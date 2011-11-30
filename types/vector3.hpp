@@ -43,7 +43,18 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
 	 */
-	double operator[] (int idx) {
+	double operator[] (int idx) const {
+		if (idx == 0)  return x;
+		if (idx == 1)  return y;
+		if (idx == 2)  return z;
+		throw std::invalid_argument ("Invalid idx value.");
+	}
+
+	/*! Индексированный доступ к компонентам вектора.
+	 *
+	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
+	 */
+	double & operator[] (int idx) {
 		if (idx == 0)  return x;
 		if (idx == 1)  return y;
 		if (idx == 2)  return z;
