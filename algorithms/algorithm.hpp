@@ -9,6 +9,7 @@
 
 
 #include <boost/shared_ptr.hpp>
+#include <stdexcept>
 #include <string>
 #include "../constants.hpp"
 #include "stuff/input_data.hpp"
@@ -106,8 +107,15 @@ protected:
 	 *
 	 * Также списку qs сразу выделяется нужный размер, а в нулевой элемент
 	 * записывается начальное решение.
+	 *
+	 * @throws std::logic_exception Кидает исключение, если заранее не были выставлены параметры step или last_time.
 	 */
 	boost::shared_ptr < output_data<Q> > init_output_data_() {
+		if (step_ <= 0)
+			throw new std::logic_error ("Перед запуском алгоритма должно быть указано корректное значение параметра step.");
+		if (last_time_ <= 0)
+			throw new std::logic_error ("Перед запуском алгоритма должно быть указано корректное значение параметра last_time.");
+
 		boost::shared_ptr < output_data<Q> > result (new output_data<Q>);
 
 		for (double t=0; t<=last_time_+EPS; t+=step_)

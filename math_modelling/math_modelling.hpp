@@ -11,6 +11,7 @@
 #include <boost/range/algorithm.hpp>
 #include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
+#include <stdexcept>
 #include <string>
 #include "../algorithms/algorithm.hpp"
 #include "stuff/artifical_input.hpp"
@@ -91,8 +92,13 @@ public:
 	 * Передаваемый алгоритм должен быть полностью корректно инициализирован,
 	 * за исключением входных данных input_data - они будут проставлены в
 	 * данном методе.
+	 *
+	 * @throws std::logic_error Кидает исключение, если входные данные не были указаны.
 	 */
 	boost::shared_ptr<result> run_algorithm (boost::shared_ptr < algorithm<Q,I> > alg) {
+		if (! data_)
+			throw std::logic_error ("Перед запуском тестирования должны были быть указаны входные данные.");
+
 		alg->set_input_data (data_->get_input_data());
 
 		boost::shared_ptr<result> ret (new result());
