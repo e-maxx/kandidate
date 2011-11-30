@@ -47,8 +47,8 @@ public:
 	 *
 	 * Этот метод должен быть вызван хотя бы один раз до запуска алгоритма.
 	 */
-	void set_input_data (boost::shared_ptr < input_data<Q,I> > input_data) {
-		input_data_ = input_data;
+	void set_input_data (boost::shared_ptr < input_data<Q,I> > data) {
+		input_data_ = data;
 	}
 
 
