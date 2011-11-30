@@ -99,6 +99,26 @@ protected:
 	//! Время, до которого должен работать алгоритм.
 	double last_time_;
 
+	/*! Возвращает созданную и подготовленную структуру output_data.
+	 *
+	 * А именно, в ней заполняется список времён ts, в которые надо посчитать
+	 * решение.
+	 *
+	 * Также списку qs сразу выделяется нужный размер, а в нулевой элемент
+	 * записывается начальное решение.
+	 */
+	boost::shared_ptr < output_data<Q> > init_output_data_() {
+		boost::shared_ptr < output_data<Q> > result (new output_data<Q>);
+
+		for (double t=0; t<=last_time_+EPS; t+=step_)
+			result->ts.push_back (t);
+		result->qs.resize (result->ts.size());
+
+		result->qs[0] = input_data_->get_initial_solution();
+
+		return result;
+	}
+
 
 }; // class algorithm
 
