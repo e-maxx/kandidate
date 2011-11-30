@@ -3,8 +3,8 @@
 */
 
 #pragma once
-#ifndef ALGORITHMS_INPUT_DATA_H
-#define ALGORITHMS_INPUT_DATA_H
+#ifndef ALGORITHMS_STUFF_INPUT_DATA_H
+#define ALGORITHMS_STUFF_INPUT_DATA_H
 
 
 
@@ -64,4 +64,4 @@ public:
 
 
 
-#endif // ifndef ALGORITHMS_INPUT_DATA_H
+#endif // ifndef ALGORITHMS_STUFF_INPUT_DATA_H

@@ -3,8 +3,8 @@
 */
 
 #pragma once
-#ifndef ALGORITHMS_OUTPUT_DATA_H
-#define ALGORITHMS_OUTPUT_DATA_H
+#ifndef ALGORITHMS_STUFF_OUTPUT_DATA_H
+#define ALGORITHMS_STUFF_OUTPUT_DATA_H
 
 
 
@@ -44,4 +44,4 @@ public:
 
 
 
-#endif // ifndef ALGORITHMS_OUTPUT_DATA_H
+#endif // ifndef ALGORITHMS_STUFF_OUTPUT_DATA_H
