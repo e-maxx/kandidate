@@ -75,6 +75,11 @@ public:
 		return vector3 (x*num, y*num, z*num);
 	}
 
+	//! Деление на константу.
+	vector3 operator/ (double num) const {
+		return vector3 (x/num, y/num, z/num);
+	}
+
 	vector3 operator- () const {
 		return vector3 (-x, -y, -z);
 	}

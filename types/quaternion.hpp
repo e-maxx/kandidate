@@ -92,6 +92,11 @@ public:
 		return quaternion (w*num, x*num, y*num, z*num);
 	}
 
+	//! Деление на константу.
+	quaternion operator/ (double num) const {
+		return quaternion (w/num, x/num, y/num, z/num);
+	}
+
 	//! Кватернионное произведение.
 	quaternion operator* (const quaternion & q) const {
 		quaternion result;
