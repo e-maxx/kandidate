@@ -9,8 +9,8 @@
 
 
 #include <boost/shared_ptr.hpp>
-#include <memory>
 #include <string>
+#include "../constants.hpp"
 #include "stuff/input_data.hpp"
 #include "stuff/output_data.hpp"
 
@@ -81,7 +81,7 @@ public:
 
 
 	//! Запускает алгоритм, возвращая полученные результаты работы.
-	virtual std::auto_ptr < output_data<Q> > execute() = 0;
+	virtual boost::shared_ptr < output_data<Q> > execute() = 0;
 
 
 	//! Возвращает название алгоритма в виде строки.

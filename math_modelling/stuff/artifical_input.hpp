@@ -50,13 +50,13 @@ public:
 
 
 	//! Возвращает тонкую прослойку, создающую input_data-интерфейс к нашему классу.
-	std::auto_ptr < input_data<Q,I> > get_input_data() {
-		return new input_data_layer_ (this);
+	boost::shared_ptr < input_data<Q,I> > get_input_data() {
+		return boost::shared_ptr < input_data<Q,I> > (new input_data_layer_ (this));
 	}
 
 	//! Вычисляет и возвращает точное решение во все требуемые моменты времени.
-	std::auto_ptr < output_data<Q> > get_exact_solution (double step, double last_time) {
-		std::auto_ptr < output_data<Q> > result = new output_data<Q>;
+	boost::shared_ptr < output_data<Q> > get_exact_solution (double step, double last_time) {
+		boost::shared_ptr < output_data<Q> > result (new output_data<Q>);
 		for (double t=0; t<=last_time+EPS; t+=step)
 			result->add (t, this->internal_get_exact_solution_ (t));
 		return result;
@@ -75,7 +75,7 @@ protected:
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
 	virtual typename I internal_get_instanteous_ (double t) {
-		throw std::runtime_exception ("Not implemented: instanteous input data was not calculated.");
+		throw std::runtime_error ("Not implemented: instanteous input data was not calculated.");
 	}
 
 	/*! Возвращает интегральные входные данные за указанный промежуток времени.
@@ -87,7 +87,7 @@ protected:
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
 	virtual typename I internal_get_integrated_ (double t1, double t2) {
-		throw std::runtime_exception ("Not implemented: integrated input data was not calculated.");
+		throw std::runtime_error ("Not implemented: integrated input data was not calculated.");
 	}
 
 	//! Возвращает точное решение в указанный момент времени.
@@ -112,8 +112,8 @@ private:
 			return that->internal_get_instanteous_ (t);
 		}
 
-		virtual typename I get_integrated (double t) {
-			return that->internal_get_integrated_ (t);
+		virtual typename I get_integrated (double t1, double t2) {
+			return that->internal_get_integrated_ (t1, t2);
 		}
 
 	private:

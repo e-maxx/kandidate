@@ -11,7 +11,6 @@
 #include <boost/range/algorithm.hpp>
 #include <boost/foreach.hpp>
 #include <boost/shared_ptr.hpp>
-#include <memory>
 #include <string>
 #include "../algorithms/algorithm.hpp"
 #include "stuff/artifical_input.hpp"
@@ -79,7 +78,7 @@ public:
 			
 			differences.resize (count);
 			for (size_t i=0; i<count; ++i)
-				differences[i] = distance (algorithm_solution->get(i), exact_solution->get(i));
+				differences[i] = distance ((*algorithm_output)[i], (*exact_solution)[i]);
 			max_difference = * boost::max_element (differences);
 		}
 
@@ -93,14 +92,14 @@ public:
 	 * за исключением входных данных input_data - они будут проставлены в
 	 * данном методе.
 	 */
-	std::auto_ptr<result> run_algorithm (boost::shared_ptr < algorithm<Q,I> > alg) {
+	boost::shared_ptr<result> run_algorithm (boost::shared_ptr < algorithm<Q,I> > alg) {
 		alg->set_input_data (data_->get_input_data());
 
-		std::auto_ptr<result> ret (new result());
+		boost::shared_ptr<result> ret (new result());
 
-		ret->algorithm_title = alg->get_title();
+		ret->algorithm_title = alg->get_algorithm_title();
 		ret->algorithm_output = alg->execute();
-		ret->exact_solution = data_->get_exact_solution (alg->get_step());
+		ret->exact_solution = data_->get_exact_solution (alg->get_step(), alg->get_last_time());
 
 		ret->finalize_();
 		return ret;
