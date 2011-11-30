@@ -49,11 +49,18 @@ public:
 		return ts.size();
 	}
 
+	//! Метод для удобного доступа к списку времён.
 	double get_time (int idx) const {
 		return ts[idx];
 	}
 
-	typename Q get (int idx) const {
+	//! Оператор для удобного доступа к списку решений.
+	typename Q operator[] (int idx) const {
+		return qs[idx];
+	}
+
+	//! Оператор для удобного доступа к списку решений.
+	typename Q & operator[] (int idx) {
 		return qs[idx];
 	}
 
