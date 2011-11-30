@@ -104,6 +104,10 @@ private:
 			: that(that)
 		{ }
 
+		virtual typename Q get_initial_solution() {
+			return that->internal_get_exact_solution_ (0);
+		}
+
 		virtual typename I get_instanteous (double t) {
 			return that->internal_get_instanteous_ (t);
 		}
