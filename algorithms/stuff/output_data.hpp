@@ -44,6 +44,19 @@ public:
 		qs.push_back (q);
 	}
 
+	//! Возвращает количество элементов.
+	size_t get_count() const {
+		return ts.size();
+	}
+
+	double get_time (int idx) const {
+		return ts[idx];
+	}
+
+	typename Q get (int idx) const {
+		return qs[idx];
+	}
+
 
 }; // class output_data
 
