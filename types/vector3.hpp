@@ -84,6 +84,20 @@ public:
 		return vector3 (-x, -y, -z);
 	}
 
+	vector3 operator+= (const vector3 & v) {
+		x += v.x;
+		y += v.y;
+		z += v.z;
+		return *this;
+	}
+
+	vector3 operator-= (const vector3 & v) {
+		x -= v.x;
+		y -= v.y;
+		z -= v.z;
+		return *this;
+	}
+
 
 	//! Возвращает норму вектора - сумму квадратов компонент.
 	double norm() const {
