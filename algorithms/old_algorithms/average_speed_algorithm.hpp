@@ -38,7 +38,7 @@ public:
 				cos (phi_m / 2),
 				phi * sin (phi_m / 2) / phi_m
 			);
-			(*result)[i] = lambda * (*result)[i-1];
+			(*result)[i] = (*result)[i-1] * lambda;
 		}
 
 		return result;
