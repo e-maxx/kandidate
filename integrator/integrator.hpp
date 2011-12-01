@@ -34,7 +34,7 @@ public:
 	 * @param x0 Левая граница интегрирования (откуда начинаем интегрировать).
 	 * @param x1 Правая граница интегрирования (до которой интегрируем).
 	 */
-	virtual T integrate (boost::function < T(double) > f, double x0, double x1) = 0;
+	virtual typename T integrate (boost::function < T(double) > f, double x0, double x1) = 0;
 
 };
 

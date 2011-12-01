@@ -45,18 +45,28 @@ class artifical_input {
 public:
 
 
+	//! Сокращение для типа входных данных.
+	typedef input_data<Q,I> t_input_data;
+	//! Сокращение для типа выходных данных.
+	typedef output_data<Q> t_output_data;
+	//! Сокращение для указателя на входные данные.
+	typedef boost::shared_ptr < t_input_data > t_input_data_ptr;
+	//! Сокращение для указателя на выходные данные.
+	typedef boost::shared_ptr < t_output_data > t_output_data_ptr;
+
+
 	virtual ~artifical_input() {
 	}
 
 
 	//! Возвращает тонкую прослойку, создающую input_data-интерфейс к нашему классу.
-	boost::shared_ptr < input_data<Q,I> > get_input_data() {
-		return boost::shared_ptr < input_data<Q,I> > (new input_data_layer_ (this));
+	t_input_data_ptr get_input_data() {
+		return t_input_data_ptr (new input_data_layer_ (this));
 	}
 
 	//! Вычисляет и возвращает точное решение во все требуемые моменты времени.
-	boost::shared_ptr < output_data<Q> > get_exact_solution (double step, double last_time) {
-		boost::shared_ptr < output_data<Q> > result (new output_data<Q>);
+	t_output_data_ptr get_exact_solution (double step, double last_time) {
+		t_output_data_ptr result (new t_output_data);
 		for (double t=0; t<=last_time+EPS; t+=step)
 			result->add (t, this->internal_get_exact_solution_ (t));
 		return result;

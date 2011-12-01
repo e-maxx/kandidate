@@ -61,14 +61,59 @@ public:
 
 	plane_angles operator+ (const plane_angles & p) const {
 		return plane_angles (
-			psi + p.psi,
-			teta + p.teta,
+			psi   + p.psi,
+			teta  + p.teta,
 			gamma + p.gamma
+		);
+	}
+
+	plane_angles operator- (const plane_angles & p) const {
+		return plane_angles (
+			psi   - p.psi,
+			teta  - p.teta,
+			gamma - p.gamma
+		);
+	}
+
+	plane_angles operator* (double p) const {
+		return plane_angles (
+			psi   * p,
+			teta  * p,
+			gamma * p
+		);
+	}
+
+	//! Скалярное произведение.
+	plane_angles operator* (const plane_angles & p) const {
+		return plane_angles (
+			psi   * p.psi,
+			teta  * p.teta,
+			gamma * p.gamma
 		);
 	}
 
 
 }; // class plane_angles
+
+
+
+//! Взятие синуса покомпонентно.
+inline plane_angles sin (const plane_angles & p) {
+	return plane_angles (
+		sin (p.psi),
+		sin (p.teta),
+		sin (p.gamma)
+	);
+}
+
+//! Взятие косинуса покомпонентно.
+inline plane_angles cos (const plane_angles & p) {
+	return plane_angles (
+		cos (p.psi),
+		cos (p.teta),
+		cos (p.gamma)
+	);
+}
 
 
 

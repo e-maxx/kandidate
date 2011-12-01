@@ -42,6 +42,20 @@ template <typename Q, typename I>
 class math_modelling {
 
 public:
+	
+
+	//! Сокращение для типа алгоритма.
+	typedef algorithm<Q,I> t_algorithm;
+	//! Сокращение для типа источника данных.
+	typedef artifical_input<Q,I> t_artifical_input;
+	//! Сокращение для типа выходных данных.
+	typedef output_data<Q> t_output_data;
+	//! Сокращение для указателя на алгоритм.
+	typedef boost::shared_ptr < t_algorithm > t_algorithm_ptr;
+	//! Сокращение для указателя на источник данных.
+	typedef boost::shared_ptr < t_artifical_input > t_artifical_input_ptr;
+	//! Сокращение для указателя на выходные данные.
+	typedef boost::shared_ptr < t_output_data > t_output_data_ptr;
 
 
 	/*! Устанавливает новый источник входных данных и точных решений.
@@ -49,7 +63,7 @@ public:
 	 * Данный метод должен быть вызван хотя бы один раз до первого вызова
 	 * метода run_algorithm().
 	 */
-	void set_data (boost::shared_ptr < artifical_input<Q,I> > data) {
+	void set_data (t_artifical_input_ptr data) {
 		data_ = data;
 	}
 
@@ -62,9 +76,9 @@ public:
 		//! Название алгоритма.
 		std::string algorithm_title;
 		//! Решение, найденное алгоритмом.
-		boost::shared_ptr < output_data<Q> > algorithm_output;
+		t_output_data_ptr algorithm_output;
 		//! Точное решение.
-		boost::shared_ptr < output_data<Q> > exact_solution;
+		t_output_data_ptr exact_solution;
 		//! Массив погрешностей - погрешность подсчитана для каждого момента времени.
 		std::vector<double> differences;
 		//! Наибольшая погрешность.
@@ -86,6 +100,10 @@ public:
 		friend class math_modelling;
 	};
 
+
+	//! Сокращение для типа указателя на результат тестирования алгоритма.
+	typedef boost::shared_ptr < result > t_result_ptr;
+
 	
 	/*! Тестирует указанный алгоритм и возвращает результат тестирования.
 	 *
@@ -95,13 +113,13 @@ public:
 	 *
 	 * @throws std::logic_error Кидает исключение, если входные данные не были указаны.
 	 */
-	boost::shared_ptr<result> run_algorithm (boost::shared_ptr < algorithm<Q,I> > alg) {
+	t_result_ptr run_algorithm (t_algorithm_ptr alg) {
 		if (! data_)
 			throw std::logic_error ("Перед запуском тестирования должны были быть указаны входные данные.");
 
 		alg->set_input_data (data_->get_input_data());
 
-		boost::shared_ptr<result> ret (new result());
+		t_result_ptr ret (new result());
 
 		ret->algorithm_title = alg->get_algorithm_title();
 		ret->algorithm_output = alg->execute();
@@ -115,7 +133,7 @@ public:
 protected:
 
 	//! Источник входных данных и точных решений.
-	boost::shared_ptr < artifical_input<Q,I> > data_;
+	t_artifical_input_ptr data_;
 
 
 }; // class math_modelling

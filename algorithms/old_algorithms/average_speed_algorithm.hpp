@@ -26,13 +26,9 @@ class average_speed_algorithm : public algorithm<Q,I> {
 public:
 
 
-	virtual ~average_speed_algorithm() {
-	}
-
-
 	//! Запускает алгоритм, возвращая полученные результаты работы.
-	virtual boost::shared_ptr < output_data<Q> > execute() {
-		boost::shared_ptr < output_data<Q> > result = init_output_data_();
+	virtual t_output_data_ptr execute() {
+		t_output_data_ptr result = init_output_data_();
 
 		for (size_t i=1; i<result->get_count(); ++i) {
 			I phi = input_data_->get_integrated (result->ts[i-1], result->ts[i]);

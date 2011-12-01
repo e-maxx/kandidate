@@ -38,11 +38,11 @@ public:
 	 * В результате каждый из трёх самолётных углов будет меняться по
 	 * собственному гармоническому закону.
 	 */
-	artifical_input_harmonious (const plane_angles & amplitude, const plane_angles & frequency, const plane_angles & shift = plane_angles()) {
-		amp_ = amplitude;
-		freq_ = frequency;
-		shift_ = shift;
-	}
+	artifical_input_harmonious (const plane_angles & amplitude, const plane_angles & frequency, const plane_angles & shift = plane_angles())
+		: amp_   (amplitude),
+		  freq_  (frequency),
+		  shift_ (shift)
+	{ }
 
 	virtual ~artifical_input_harmonious() {
 	}
@@ -65,7 +65,8 @@ protected:
 
 	//! Возвращает интегральные входные данные за указанный промежуток времени.
 	virtual vector3 internal_get_integrated_ (double t1, double t2) {
-		return default_integrator<vector3>()->integrate (boost::bind (&artifical_input_harmonious::calc_omega_t_, this, _1), t1, t2);
+		auto func = boost::bind (&artifical_input_harmonious::calc_omega_t_, this, _1);
+		return default_integrator<vector3>()->integrate (func, t1, t2);
 	}
 
 	//! Возвращает точное решение в указанный момент времени.
@@ -75,30 +76,23 @@ protected:
 
 
 	//! Функция, описывающая вид колебаний.
-	plane_angles get_angs_ (double t) {
-		return plane_angles (
-			amp_.psi   *  sin (freq_.psi   *  t  +  shift_.psi),
-			amp_.teta  *  sin (freq_.teta  *  t  +  shift_.teta),
-			amp_.gamma *  sin (freq_.gamma *  t  +  shift_.gamma)
-			);
+	plane_angles get_angs_ (double t) const {
+		return amp_ * sin (freq_ * t + shift_);
 	}
 
 	//! Функция - производная от get_angs_().
-	plane_angles get_angs_diff_ (double t) {
-		return plane_angles (
-			amp_.psi   *  freq_.psi   * cos (freq_.psi   *  t  +  shift_.psi),
-			amp_.teta  *  freq_.teta  * cos (freq_.teta  *  t  +  shift_.teta),
-			amp_.gamma *  freq_.gamma * cos (freq_.gamma *  t  +  shift_.gamma)
-			);
+	plane_angles get_angs_diff_ (double t) const {
+		return amp_ * freq_ * cos (freq_ * t + shift_);
 	}
 
+
 	//! Функция, вычисляющая мгновенную угловую скорость в заданный момент времени.
-	vector3 calc_omega_t_ (double t) {
+	vector3 calc_omega_t_ (double t) const {
 		return calc_omega_ (get_angs_ (t), get_angs_diff_ (t));
 	}
 
-	//! Функция, вычисляющая мгновенную угловую скорость по заданным самолётным углам и их производным в текущий момент времени.
-	vector3 calc_omega_ (const plane_angles & angs, const plane_angles & ang_diffs) {
+	//! Функция, вычисляющая мгновенную угловую скорость по заданным значениям самолётных углов и их производных.
+	vector3 calc_omega_ (const plane_angles & angs, const plane_angles & ang_diffs) const {
 		vector3 result;
 		result.x = ang_diffs.gamma + ang_diffs.psi * sin (angs.teta);
 		result.y = ang_diffs.teta * sin (angs.gamma) + ang_diffs.psi * cos (angs.teta) * cos (angs.gamma);

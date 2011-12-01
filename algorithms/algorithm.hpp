@@ -40,6 +40,16 @@ class algorithm {
 public:
 
 
+	//! Сокращение для типа входных данных.
+	typedef input_data<Q,I> t_input_data;
+	//! Сокращение для типа выходных данных.
+	typedef output_data<Q> t_output_data;
+	//! Сокращение для указателя на входные данные.
+	typedef boost::shared_ptr < t_input_data > t_input_data_ptr;
+	//! Сокращение для указателя на выходные данные.
+	typedef boost::shared_ptr < t_output_data > t_output_data_ptr;
+
+
 	virtual ~algorithm() {
 	}
 
@@ -48,7 +58,7 @@ public:
 	 *
 	 * Этот метод должен быть вызван хотя бы один раз до запуска алгоритма.
 	 */
-	void set_input_data (boost::shared_ptr < input_data<Q,I> > data) {
+	void set_input_data (t_input_data_ptr data) {
 		input_data_ = data;
 	}
 
@@ -82,7 +92,7 @@ public:
 
 
 	//! Запускает алгоритм, возвращая полученные результаты работы.
-	virtual boost::shared_ptr < output_data<Q> > execute() = 0;
+	virtual t_output_data_ptr execute() = 0;
 
 
 	//! Возвращает название алгоритма в виде строки.
@@ -92,7 +102,7 @@ public:
 protected:
 
 	//! Источник входных данных для алгоритма.
-	boost::shared_ptr < input_data<Q,I> > input_data_;
+	t_input_data_ptr input_data_;
 
 	//! Временной шаг алгоритма (т.е. шаг, с которым алгоритм будет выдавать решение).
 	double step_;
@@ -110,13 +120,13 @@ protected:
 	 *
 	 * @throws std::logic_exception Кидает исключение, если заранее не были выставлены параметры step или last_time.
 	 */
-	boost::shared_ptr < output_data<Q> > init_output_data_() {
+	t_output_data_ptr init_output_data_() {
 		if (step_ <= 0)
 			throw new std::logic_error ("Перед запуском алгоритма должно быть указано корректное значение параметра step.");
 		if (last_time_ <= 0)
 			throw new std::logic_error ("Перед запуском алгоритма должно быть указано корректное значение параметра last_time.");
 
-		boost::shared_ptr < output_data<Q> > result (new output_data<Q>);
+		t_output_data_ptr result (new t_output_data);
 
 		for (double t=0; t<=last_time_+EPS; t+=step_)
 			result->ts.push_back (t);
