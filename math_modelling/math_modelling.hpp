@@ -14,7 +14,7 @@
 #include <stdexcept>
 #include <string>
 #include "../algorithms/algorithm.hpp"
-#include "stuff/artifical_input.hpp"
+#include "artifical_input/artifical_input.hpp"
 
 
 
