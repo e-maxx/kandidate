@@ -113,6 +113,9 @@ BOOST_AUTO_TEST_CASE( operator_brackets_test )
 	BOOST_CHECK_CLOSE (q[1], 6, tolerance);
 	BOOST_CHECK_CLOSE (q[2], 7, tolerance);
 	BOOST_CHECK_CLOSE (q[3], 8, tolerance);
+
+	BOOST_CHECK_THROW (q[-1], std::invalid_argument);
+	BOOST_CHECK_THROW (q[4], std::invalid_argument);
 }
 
 
