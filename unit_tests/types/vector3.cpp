@@ -5,7 +5,7 @@
 #include "../../types/vector3.hpp"
 
 
-static const double tolerance = 1E-9;
+static const double tolerance = 1E-7;
 
 
 BOOST_AUTO_TEST_SUITE( vector3_test )
