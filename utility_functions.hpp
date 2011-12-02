@@ -1,4 +1,4 @@
-/*! \file utility_functions.hpp
+/** \file utility_functions.hpp
     \brief Содержит мелкие вспомогательные функции.
 */
 

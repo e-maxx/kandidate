@@ -1,4 +1,4 @@
-/*! \file constants.cpp
+/** \file constants.cpp
     \brief Юнит-тесты для файла "constants.hpp".
 */
 #include <boost/test/unit_test.hpp>

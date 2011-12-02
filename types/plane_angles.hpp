@@ -1,4 +1,4 @@
-/*! \file plane_angles.hpp
+/** \file plane_angles.hpp
     \brief Содержит класс "plane_angles" - самолётные углы.
 */
 
@@ -14,7 +14,7 @@
 
 
 
-/*! Класс "plane_angles" - самолётные углы.
+/** Класс "plane_angles" - самолётные углы.
  *
  * Самолётные углы - это тройка углов (psi, teta, gamma - курс, крен, тангаж).
  */

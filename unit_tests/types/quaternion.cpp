@@ -1,4 +1,4 @@
-/*! \file quaternion.cpp
+/** \file quaternion.cpp
     \brief Юнит-тесты для файла "types/quaternion.hpp".
 */
 #include <boost/test/unit_test.hpp>

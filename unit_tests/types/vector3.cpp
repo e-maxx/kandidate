@@ -1,4 +1,4 @@
-/*! \file vector3.cpp
+/** \file vector3.cpp
     \brief Юнит-тесты для файла "types/vector3.hpp".
 */
 #include <boost/test/unit_test.hpp>

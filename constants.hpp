@@ -1,4 +1,4 @@
-/*! \file constants.hpp
+/** \file constants.hpp
     \brief Содержит общие константы.
 */
 

@@ -1,4 +1,4 @@
-/*! \file utility_functions.cpp
+/** \file utility_functions.cpp
     \brief Юнит-тесты для файла "utility_functions.hpp".
 */
 #include <boost/test/unit_test.hpp>
