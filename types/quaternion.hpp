@@ -9,8 +9,10 @@
 
 
 #include <cmath>
+#include <iosfwd>
 #include <stdexcept>
 #include "vector3.hpp"
+#include "../constants.hpp"
 
 
 
@@ -121,6 +123,11 @@ public:
 		return conjugate() * (1 / norm());
 	}
 
+	
+	bool operator== (const quaternion & q) const {
+		return abs (w - q.w) < EPS && abs (x - q.x) < EPS && abs (y - q.y) < EPS && abs (z - q.z) < EPS;
+	}
+
 
 	//! Возвращает норму кватерниона - сумму квадратов компонент.
 	double norm() const {
@@ -146,6 +153,12 @@ public:
 //! Возвращает расстояние между кватернионами - т.е. модуль их разности.
 inline double distance (const quaternion & a, const quaternion & b) {
 	return (a-b).length();
+}
+
+
+//! Вывод кватерниона.
+std::ostream & operator<< (std::ostream & stream, const quaternion & q) {
+	return stream << q.w << ' ' << q.x << ' ' << q.y << ' ' << q.z << ' ';
 }
 
 
