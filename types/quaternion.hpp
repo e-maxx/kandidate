@@ -150,6 +150,12 @@ public:
 
 
 
+inline quaternion operator* (double a, const quaternion & b) {
+	return b * a;
+}
+
+
+
 //! Возвращает расстояние между кватернионами - т.е. модуль их разности.
 inline double distance (const quaternion & a, const quaternion & b) {
 	return (a-b).length();
