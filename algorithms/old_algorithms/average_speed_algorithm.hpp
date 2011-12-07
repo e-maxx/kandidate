@@ -31,7 +31,7 @@ public:
 		t_output_data_ptr result = init_output_data_();
 
 		for (size_t i=1; i<result->get_count(); ++i) {
-			I phi = input_data_->get_integrated (result->ts[i-1], result->ts[i]);
+			I phi = get_integrated_data (i);
 			double phi_m = phi.length();
 
 			Q lambda (
