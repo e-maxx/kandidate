@@ -80,6 +80,17 @@ public:
 		throw std::invalid_argument ("Invalid idx value.");
 	}
 
+
+	//! Скалярная часть кватерниона - член w.
+	double get_scalar() const {
+		return w;
+	}
+
+	//! Векторная часть кватерниона - вектор, образованный членами (x,y,z).
+	vector3 get_vector() const {
+		return vector3 (x, y, z);
+	}
+
 	
 	quaternion operator+ (const quaternion & q) const {
 		return quaternion (w+q.w, x+q.x, y+q.y, z+q.z);
