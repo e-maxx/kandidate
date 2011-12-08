@@ -46,12 +46,39 @@ public:
 		return dual_number (real * other.real, real * other.imag + other.real * imag);
 	}
 
+	dual_number operator/ (const dual_number & other) const {
+		return dual_number (
+			real / other.real,
+			(imag * other.real - real * other.imag) / (other.real * other.real)
+		);
+	}
+
 	dual_number operator* (double num) const {
 		return dual_number (real * num, imag * num);
 	}
 
 	dual_number operator/ (double num) const {
 		return dual_number (real / num, imag / num);
+	}
+
+	dual_number & operator+= (const dual_number & other) {
+		*this = *this + other;
+		return *this;
+	}
+
+	dual_number & operator-= (const dual_number & other) {
+		*this = *this - other;
+		return *this;
+	}
+
+	dual_number & operator*= (double num) {
+		*this = *this * num;
+		return *this;
+	}
+
+	dual_number & operator/= (double num) {
+		*this = *this / num;
+		return *this;
 	}
 
 }; // class dual_number
@@ -95,6 +122,14 @@ inline dual_number exp (const dual_number & num) {
 	return dual_number (
 		ex,
 		ex * num.imag
+	);
+}
+
+inline dual_number sqrt (const dual_number & num) {
+	double sq = sqrt (num.real);
+	return dual_number (
+		sq,
+		num.imag / 2 / sq
 	);
 }
 
