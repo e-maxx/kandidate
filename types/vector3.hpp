@@ -80,22 +80,29 @@ public:
 		return vector3 (x/num, y/num, z/num);
 	}
 
+	//! Унарный минус.
 	vector3 operator- () const {
 		return vector3 (-x, -y, -z);
 	}
 
-	vector3 operator+= (const vector3 & v) {
+	vector3 & operator+= (const vector3 & v) {
 		x += v.x;
 		y += v.y;
 		z += v.z;
 		return *this;
 	}
 
-	vector3 operator-= (const vector3 & v) {
+	vector3 & operator-= (const vector3 & v) {
 		x -= v.x;
 		y -= v.y;
 		z -= v.z;
 		return *this;
+	}
+
+
+	//! Скалярное произведение.
+	double dotProduct (const vector3 & v) const {
+		return x * v.x + y * v.y + z * v.z;
 	}
 
 
@@ -114,9 +121,19 @@ public:
 
 
 
+//! Умножение на константу
+inline vector3 operator* (double num, const vector3 & v) {
+	return v * num;
+}
+
 //! Возвращает расстояние между векторами - т.е. модуль их разности.
 inline double distance (const vector3 & a, const vector3 & b) {
 	return (a-b).length();
+}
+
+//! Скалярное произведение.
+inline double dotProduct (const vector3 & a, const vector3 & b) {
+	return a.dotProduct (b);
 }
 
 
