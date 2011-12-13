@@ -9,9 +9,7 @@
 
 
 #include <cmath>
-#include "../algorithm.hpp"
-#include "../../types/quaternion.hpp"
-#include "../../types/vector3.hpp"
+#include "../iterative_algorithm.hpp"
 
 
 
@@ -21,33 +19,32 @@
  * @tparam I Выбранный тип входных данных.
  */
 template <typename Q, typename I>
-class average_speed_algorithm : public algorithm<Q,I> {
+class average_speed_algorithm : public iterative_algorithm<Q,I> {
 
 public:
-
-
-	//! Запускает алгоритм, возвращая полученные результаты работы.
-	virtual t_output_data_ptr execute() {
-		t_output_data_ptr result = init_output_data_();
-
-		for (size_t i=1; i<result->get_count(); ++i) {
-			I phi = get_integrated_data (i);
-			double phi_m = phi.length();
-
-			Q lambda (
-				cos (phi_m / 2),
-				phi * sin (phi_m / 2) / phi_m
-			);
-			(*result)[i] = (*result)[i-1] * lambda;
-		}
-
-		return result;
-	}
 
 
 	//! Возвращает название алгоритма в виде строки.
 	virtual std::string get_algorithm_title() {
 		return "Метод средней скорости (1-шаговый, 2-го порядка, по интегральным данным)";
+	}
+
+
+protected:
+
+	/** Вычисляет решение на текущем временном отрезке.
+	 *
+	 * @param t Время, в которое требуется найти решение.
+	 * @param gamma Вектор, состоящий из единственного элемента - входных данных на текущем временном отрезке.
+	 */
+	virtual Q get_local_solution_ (double t, const std::vector<I> & gamma) {
+		const I & phi = gamma[0];
+		auto phi_m = phi.length();
+
+		return Q (
+			cos (phi_m / 2),
+			phi * sin (phi_m / 2) / phi_m
+		);
 	}
 
 
