@@ -62,6 +62,9 @@ protected:
 	virtual plane_angles get_angs_diff_ (double t) = 0;
 
 
+private:
+
+
 	//! Возвращает мгновенные входные данные в данный момент времени.
 	virtual vector3 internal_get_instanteous_ (double t) {
 		return calc_omega_ (this->get_angs_ (t), this->get_angs_diff_ (t));

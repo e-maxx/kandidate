@@ -21,7 +21,7 @@
 template <typename Q, typename I>
 class average_speed_algorithm : public iterative_algorithm<Q,I> {
 
-public:
+private:
 
 
 	//! Возвращает название алгоритма в виде строки.
@@ -29,8 +29,6 @@ public:
 		return "Метод средней скорости (1-шаговый, 2-го порядка, по интегральным данным)";
 	}
 
-
-protected:
 
 	/** Вычисляет решение на текущем временном отрезке.
 	 *

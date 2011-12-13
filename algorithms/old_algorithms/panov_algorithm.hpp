@@ -20,7 +20,7 @@
  */
 class panov_algorithm : public iterative_algorithm<quaternion,vector3> {
 
-public:
+private:
 	
 
 	//! Возвращает название алгоритма в виде строки.
@@ -28,8 +28,6 @@ public:
 		return "Алгоритм Панова (4-шаговый, 6-го порядка, по интегральным данным)";
 	}
 
-
-protected:
 
 	/** Возвращает "Шаговость" алгоритма.
 	 *
@@ -39,6 +37,7 @@ protected:
 	virtual int get_algorithm_steps_count_() {
 		return 4;
 	}
+
 
 	/** Вычисляет решение на текущем временном отрезке.
 	 *

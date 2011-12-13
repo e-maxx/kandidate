@@ -58,7 +58,6 @@ public:
 	virtual ~artifical_input() {
 	}
 
-
 	//! Возвращает тонкую прослойку, создающую input_data-интерфейс к нашему классу.
 	t_input_data_ptr get_input_data() {
 		return t_input_data_ptr (new input_data_layer_ (this));
@@ -71,7 +70,7 @@ public:
 			result->add (t, this->internal_get_exact_solution_ (t));
 		return result;
 	}
-
+	
 
 protected:
 
@@ -105,9 +104,11 @@ protected:
 
 
 private:
-	
+
+
 	//! Тонкая прослойка от нашего класса к классу input_data.
 	class input_data_layer_ : public input_data<Q,I> {
+	
 	public:
 
 		input_data_layer_ (artifical_input * that)
@@ -128,7 +129,8 @@ private:
 
 	private:
 		artifical_input * that;
-	};
+	
+	}; // class input_data_layer_
 
 
 }; // class artifical_input
