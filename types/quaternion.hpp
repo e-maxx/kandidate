@@ -92,8 +92,16 @@ public:
 	}
 
 	
+	quaternion operator+ (double num) const {
+		return quaternion (w+num, x, y, z);
+	}
+
 	quaternion operator+ (const quaternion & q) const {
 		return quaternion (w+q.w, x+q.x, y+q.y, z+q.z);
+	}
+
+	quaternion operator- (double num) const {
+		return quaternion (w-num, x, y, z);
 	}
 
 	quaternion operator- (const quaternion & q) const {
@@ -123,6 +131,28 @@ public:
 	quaternion operator- () const {
 		return quaternion (-w, -x, -y, -z);
 	}
+	
+
+	quaternion & operator+= (const quaternion & q) {
+		*this = *this + q;
+		return *this;
+	}
+
+	quaternion & operator-= (const quaternion & q) {
+		*this = *this - q;
+		return *this;
+	}
+
+	quaternion & operator*= (double num) {
+		*this = *this * num;
+		return *this;
+	}
+
+	quaternion & operator/= (double num) {
+		*this = *this / num;
+		return *this;
+	}
+
 
 	//! Сопряжённый кватернион.
 	quaternion conjugate() const {
@@ -160,6 +190,14 @@ public:
 }; // class quaternion
 
 
+
+inline quaternion operator+ (double a, const quaternion & b) {
+	return b + a;
+}
+
+inline quaternion operator- (double a, const quaternion & b) {
+	return quaternion (a-b.w, -b.x, -b.y, -b.z);
+}
 
 inline quaternion operator* (double a, const quaternion & b) {
 	return b * a;

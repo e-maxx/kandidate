@@ -105,6 +105,15 @@ public:
 		return x * v.x + y * v.y + z * v.z;
 	}
 
+	//! Векторное произведение.
+	vector3 crossProduct (const vector3 & v) const {
+		return vector3 (
+			y * v.z - z * v.y,
+			z * v.x - x * v.z,
+			x * v.y - y * v.x
+		);
+	}
+
 
 	//! Возвращает норму вектора - сумму квадратов компонент.
 	double norm() const {
@@ -134,6 +143,11 @@ inline double distance (const vector3 & a, const vector3 & b) {
 //! Скалярное произведение.
 inline double dotProduct (const vector3 & a, const vector3 & b) {
 	return a.dotProduct (b);
+}
+
+//! Векторное произведение.
+inline vector3 crossProduct (const vector3 & a, const vector3 & b) {
+	return a.crossProduct (b);
 }
 
 
