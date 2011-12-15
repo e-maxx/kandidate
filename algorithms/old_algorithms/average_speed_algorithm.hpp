@@ -8,6 +8,7 @@
 
 
 
+#include <boost/typeof/typeof.hpp>
 #include <cmath>
 #include "../iterative_algorithm.hpp"
 
@@ -37,7 +38,7 @@ private:
 	 */
 	virtual Q get_local_solution_ (double t, const std::vector<I> & gamma) {
 		const I & phi = gamma[0];
-		auto phi_m = phi.length();
+		BOOST_AUTO( phi_m, phi.length() );
 
 		return Q (
 			cos (phi_m / 2),

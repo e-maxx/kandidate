@@ -55,12 +55,12 @@ public:
 	}
 
 	//! Оператор для удобного доступа к списку решений.
-	typename Q operator[] (int idx) const {
+	Q operator[] (int idx) const {
 		return qs[idx];
 	}
 
 	//! Оператор для удобного доступа к списку решений.
-	typename Q & operator[] (int idx) {
+	Q & operator[] (int idx) {
 		return qs[idx];
 	}
 

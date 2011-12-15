@@ -40,7 +40,7 @@ public:
 
 
 	//! Возвращает начальные данные - т.е. решение в момент времени t=0.
-	virtual typename Q get_initial_solution() = 0;
+	virtual Q get_initial_solution() = 0;
 
 
 	/** Возвращает мгновенные входные данные в данный момент времени.
@@ -51,7 +51,7 @@ public:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual typename I get_instanteous (double t) {
+	virtual I get_instanteous (double t) {
 		throw std::runtime_error ("Not implemented: instanteous input data was not calculated.");
 	}
 
@@ -63,7 +63,7 @@ public:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual typename I get_integrated (double t1, double t2) {
+	virtual I get_integrated (double t1, double t2) {
 		throw std::runtime_error ("Not implemented: integrated input data was not calculated.");
 	}
 

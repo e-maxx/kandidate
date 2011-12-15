@@ -82,22 +82,23 @@ private:
 	 * сделать потомки - это реализовать метод get_local_solution_(),
 	 * вычисляющий решение на текущем временном отрезке.
 	 */
-	virtual t_output_data_ptr execute() {
-		t_output_data_ptr result = init_output_data_();
+	virtual typename algorithm<Q,I>::t_output_data_ptr execute() {
+		typename algorithm<Q,I>::t_output_data_ptr result = this->init_output_data_();
 
 		// выделяем память под входные данные на каждом текущем шаге
 		int steps_count = this->get_algorithm_steps_count_();
 		std::vector<I> gamma (steps_count);
 
-		double delta_t = step_ / steps_count;
+		double step = this->step_;
+		double delta_t = step / steps_count;
 
 		for (size_t i=1; i<result->get_count(); ++i) {
 			// вычисляем входные данные
 			double t = result->ts[i];
 			for (int j=0; j<steps_count; ++j) {
-				double t1 = t - step_ + j * delta_t,
+				double t1 = t - step + j * delta_t,
 					t2 = t1 + delta_t;
-				gamma[j] = input_data_->get_integrated (t1, t2);
+				gamma[j] = this->input_data_->get_integrated (t1, t2);
 			}
 
 			// вычисляем решение на текущем временном отрезке

@@ -83,7 +83,7 @@ protected:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual typename I internal_get_instanteous_ (double t) {
+	virtual I internal_get_instanteous_ (double t) {
 		throw std::runtime_error ("Not implemented: instanteous input data was not calculated.");
 	}
 
@@ -95,12 +95,12 @@ protected:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual typename I internal_get_integrated_ (double t1, double t2) {
+	virtual I internal_get_integrated_ (double t1, double t2) {
 		throw std::runtime_error ("Not implemented: integrated input data was not calculated.");
 	}
 
 	//! Возвращает точное решение в указанный момент времени.
-	virtual typename Q internal_get_exact_solution_ (double t) = 0;
+	virtual Q internal_get_exact_solution_ (double t) = 0;
 
 
 private:
@@ -115,15 +115,15 @@ private:
 			: that(that)
 		{ }
 
-		virtual typename Q get_initial_solution() {
+		virtual Q get_initial_solution() {
 			return that->internal_get_exact_solution_ (0);
 		}
 
-		virtual typename I get_instanteous (double t) {
+		virtual I get_instanteous (double t) {
 			return that->internal_get_instanteous_ (t);
 		}
 
-		virtual typename I get_integrated (double t1, double t2) {
+		virtual I get_integrated (double t1, double t2) {
 			return that->internal_get_integrated_ (t1, t2);
 		}
 

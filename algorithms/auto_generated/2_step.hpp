@@ -22,11 +22,11 @@ public:
 
 
 	//! Запускает алгоритм, возвращая полученные результаты работы.
-	virtual t_output_data_ptr execute() {
-		t_output_data_ptr result = init_output_data_();
+	virtual typename algorithm<Q, I>::t_output_data_ptr execute() {
+		typename algorithm<Q, I>::t_output_data_ptr result = this->init_output_data_();
 
 		for (size_t i=1; i<result->get_count(); ++i) {
-			I phi = input_data_->get_integrated (result->ts[i-1], result->ts[i]);
+			I phi = this->input_data_->get_integrated (result->ts[i-1], result->ts[i]);
 			quaternion lambda;
 
 			if (i == 1) {
@@ -38,7 +38,7 @@ public:
 				);
 			}
 			else {
-				I phi2 = input_data_->get_integrated (result->ts[i-2], result->ts[i-1]);
+				I phi2 = this->input_data_->get_integrated (result->ts[i-2], result->ts[i-1]);
 				
 				Q omega1 = phi;
 				Q omega2 = phi2;

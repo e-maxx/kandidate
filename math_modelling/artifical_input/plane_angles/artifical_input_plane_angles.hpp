@@ -10,6 +10,7 @@
 
 #include <boost/bind.hpp>
 #include <boost/shared_ptr.hpp>
+#include <boost/typeof/typeof.hpp>
 #include "../artifical_input.hpp"
 #include "../../../types/plane_angles.hpp"
 #include "../../../types/quaternion.hpp"
@@ -72,7 +73,7 @@ private:
 
 	//! Возвращает интегральные входные данные за указанный промежуток времени.
 	virtual vector3 internal_get_integrated_ (double t1, double t2) {
-		auto func = boost::bind (&artifical_input_plane_angles::internal_get_instanteous_, this, _1);
+		BOOST_AUTO( func, boost::bind (&artifical_input_plane_angles::internal_get_instanteous_, this, _1) );
 		return default_integrator<vector3>()->integrate (func, t1, t2);
 	}
 

@@ -38,7 +38,7 @@ public:
 	}
 
 	//! Выполняет численное интегрирование и возвращает результат
-	typename T integrate (boost::function < T(double) > f, double x0, double x1) {
+	T integrate (boost::function < T(double) > f, double x0, double x1) {
 		int N = int ((x1 - x0) / h);
 		N = std::max (N, 10);
 		if (N % 2)  ++N;

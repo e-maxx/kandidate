@@ -138,17 +138,17 @@ protected:
 	}
 
 	//! Возвращает мгновенные входные данные в данной точке.
-	typename I get_instanteous_data (double t) {
+	I get_instanteous_data (double t) {
 		return input_data_->get_instanteous (t);
 	}
 
 	//! Возвращает интегральные входные данные на указанном отрезке.
-	typename I get_integrated_data (double t1, double t2) {
+	I get_integrated_data (double t1, double t2) {
 		return input_data_->get_integrated (t1, t2);
 	}
 
 	//! Возвращает интегральные входные данные на idx-ом по счёту отрезке (начиная с единицы).
-	typename I get_integrated_data (size_t idx) {
+	I get_integrated_data (size_t idx) {
 		double t1 = step_ * (idx - 1),
 			t2 = t1 + step_;
 		return input_data_->get_integrated (t1, t2);
