@@ -55,7 +55,7 @@ protected:
 	 * @param t Время, в которое требуется найти решение.
 	 * @param gamma Входные данные на временном отрезке (это вектор, поскольку для многошаговых алгоритмов (см. get_algorithm_steps_count_()) передаётся соответствующее число входных данных: на нескольких подотрезках, в порядке их следования во времени).
 	 */
-	virtual Q get_local_riccati_solution_ (double t, const std::vector<I> & gamma) = 0;
+	virtual Q get_local_riccati_solution_ (long double t, const std::vector<I> & gamma) = 0;
 
 
 private:
@@ -66,7 +66,7 @@ private:
 	 * @param t Время, в которое требуется найти решение.
 	 * @param gamma Входные данные на временном отрезке (это вектор, поскольку для многошаговых алгоритмов (см. get_algorithm_steps_count_()) передаётся соответствующее число входных данных: на нескольких подотрезках, в порядке их следования во времени).
 	 */
-	virtual Q get_local_solution_ (double t, const std::vector<I> & gamma) {
+	virtual Q get_local_solution_ (long double t, const std::vector<I> & gamma) {
 		Q x = this->get_local_riccati_solution_ (t, gamma);
 		
 		BOOST_AUTO( norm, x.norm() );

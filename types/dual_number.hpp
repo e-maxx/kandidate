@@ -16,20 +16,20 @@ class dual_number {
 public:
 
 	//! Действительная компонента числа.
-	double real;
+	long double real;
 	//! Мнимая компонента числа (домножающаяся на мнимую единицу s).
-	double imag;
+	long double imag;
 
 
 	dual_number()
 		: real(0), imag(0)
 	{ }
 
-	explicit dual_number (double real)
+	explicit dual_number (long double real)
 		: real(real), imag(0)
 	{ }
 
-	dual_number (double real, double imag)
+	dual_number (long double real, long double imag)
 		: real(real), imag(imag)
 	{ }
 
@@ -53,11 +53,11 @@ public:
 		);
 	}
 
-	dual_number operator* (double num) const {
+	dual_number operator* (long double num) const {
 		return dual_number (real * num, imag * num);
 	}
 
-	dual_number operator/ (double num) const {
+	dual_number operator/ (long double num) const {
 		return dual_number (real / num, imag / num);
 	}
 
@@ -71,12 +71,12 @@ public:
 		return *this;
 	}
 
-	dual_number & operator*= (double num) {
+	dual_number & operator*= (long double num) {
 		*this = *this * num;
 		return *this;
 	}
 
-	dual_number & operator/= (double num) {
+	dual_number & operator/= (long double num) {
 		*this = *this / num;
 		return *this;
 	}
@@ -85,7 +85,7 @@ public:
 
 
 
-inline dual_number operator* (double num, const dual_number & dual_num) {
+inline dual_number operator* (long double num, const dual_number & dual_num) {
 	return dual_num * num;
 }
 
@@ -118,7 +118,7 @@ inline dual_number log (const dual_number & num) {
 }
 
 inline dual_number exp (const dual_number & num) {
-	double ex = exp (num.real);
+	long double ex = exp (num.real);
 	return dual_number (
 		ex,
 		ex * num.imag
@@ -126,7 +126,7 @@ inline dual_number exp (const dual_number & num) {
 }
 
 inline dual_number sqrt (const dual_number & num) {
-	double sq = sqrt (num.real);
+	long double sq = sqrt (num.real);
 	return dual_number (
 		sq,
 		num.imag / 2 / sq

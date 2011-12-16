@@ -67,12 +67,12 @@ public:
 	 *
 	 * Этот метод должен быть вызван хотя бы один раз до запуска алгоритма.
 	 */
-	void set_step (double step) {
+	void set_step (long double step) {
 		step_ = step;
 	}
 
 	//! Возвращает временной шаг алгоритма (т.е. шаг, с которым алгоритм будет выдавать решение).
-	double get_step() const {
+	long double get_step() const {
 		return step_;
 	}
 
@@ -81,12 +81,12 @@ public:
 	 *
 	 * Этот метод должен быть вызван хотя бы один раз до запуска алгоритма.
 	 */
-	void set_last_time (double last_time) {
+	void set_last_time (long double last_time) {
 		last_time_ = last_time;
 	}
 
 	//! Возвращает время, до которого должен работать алгоритм.
-	double get_last_time() const {
+	long double get_last_time() const {
 		return last_time_;
 	}
 
@@ -105,10 +105,10 @@ protected:
 	t_input_data_ptr input_data_;
 
 	//! Временной шаг алгоритма (т.е. шаг, с которым алгоритм будет выдавать решение).
-	double step_;
+	long double step_;
 
 	//! Время, до которого должен работать алгоритм.
-	double last_time_;
+	long double last_time_;
 
 	/** Возвращает созданную и подготовленную структуру output_data.
 	 *
@@ -128,7 +128,7 @@ protected:
 
 		t_output_data_ptr result (new t_output_data);
 
-		for (double t=0; t<=last_time_+EPS; t+=step_)
+		for (long double t=0; t<=last_time_+EPS; t+=step_)
 			result->ts.push_back (t);
 		result->qs.resize (result->ts.size());
 
@@ -138,18 +138,18 @@ protected:
 	}
 
 	//! Возвращает мгновенные входные данные в данной точке.
-	I get_instanteous_data (double t) {
+	I get_instanteous_data (long double t) {
 		return input_data_->get_instanteous (t);
 	}
 
 	//! Возвращает интегральные входные данные на указанном отрезке.
-	I get_integrated_data (double t1, double t2) {
+	I get_integrated_data (long double t1, long double t2) {
 		return input_data_->get_integrated (t1, t2);
 	}
 
 	//! Возвращает интегральные входные данные на idx-ом по счёту отрезке (начиная с единицы).
 	I get_integrated_data (size_t idx) {
-		double t1 = step_ * (idx - 1),
+		long double t1 = step_ * (idx - 1),
 			t2 = t1 + step_;
 		return input_data_->get_integrated (t1, t2);
 	}

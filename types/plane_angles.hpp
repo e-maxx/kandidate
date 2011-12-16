@@ -26,7 +26,7 @@ public:
 	/** @name Тройка углов.
 	 */
 	//@{
-	double psi, //!< угол psi - географический курс
+	long double psi, //!< угол psi - географический курс
 		teta, //!< угол teta - угол тангажа
 		gamma; //!< угол gamma - угол крена
 	//@}
@@ -37,7 +37,7 @@ public:
 	{ }
 
 	//! Конструктор от тройки углов.
-	plane_angles (double psi, double teta, double gamma)
+	plane_angles (long double psi, long double teta, long double gamma)
 		: psi(psi), teta(teta), gamma(gamma)
 	{ }
 
@@ -75,7 +75,7 @@ public:
 		);
 	}
 
-	plane_angles operator* (double p) const {
+	plane_angles operator* (long double p) const {
 		return plane_angles (
 			psi   * p,
 			teta  * p,

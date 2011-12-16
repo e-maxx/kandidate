@@ -72,11 +72,11 @@ public:
 		return dual_vector (real - other.real, imag - other.imag);
 	}
 
-	dual_vector operator* (double num) const {
+	dual_vector operator* (long double num) const {
 		return dual_vector (real * num, imag * num);
 	}
 
-	dual_vector operator/ (double num) const {
+	dual_vector operator/ (long double num) const {
 		return dual_vector (real / num, imag / num);
 	}
 
@@ -112,7 +112,7 @@ public:
 
 
 
-inline dual_vector operator* (double num, const dual_vector & dual_vec) {
+inline dual_vector operator* (long double num, const dual_vector & dual_vec) {
 	return dual_vec * num;
 }
 

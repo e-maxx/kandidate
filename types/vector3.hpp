@@ -21,7 +21,7 @@ public:
 	
 	/** Компоненты вектора. */
 	//@{
-	double x, y, z;
+	long double x, y, z;
 	//@}
 
 	
@@ -30,7 +30,7 @@ public:
 		: x(0), y(0), z(0)
 	{ }
 
-	vector3 (double x, double y, double z)
+	vector3 (long double x, long double y, long double z)
 		: x(x), y(y), z(z)
 	{ }
 
@@ -43,7 +43,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
 	 */
-	double operator[] (int idx) const {
+	long double operator[] (int idx) const {
 		if (idx == 0)  return x;
 		if (idx == 1)  return y;
 		if (idx == 2)  return z;
@@ -54,7 +54,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
 	 */
-	double & operator[] (int idx) {
+	long double & operator[] (int idx) {
 		if (idx == 0)  return x;
 		if (idx == 1)  return y;
 		if (idx == 2)  return z;
@@ -71,12 +71,12 @@ public:
 	}
 
 	//! Умножение на константу.
-	vector3 operator* (double num) const {
+	vector3 operator* (long double num) const {
 		return vector3 (x*num, y*num, z*num);
 	}
 
 	//! Деление на константу.
-	vector3 operator/ (double num) const {
+	vector3 operator/ (long double num) const {
 		return vector3 (x/num, y/num, z/num);
 	}
 
@@ -101,7 +101,7 @@ public:
 
 
 	//! Скалярное произведение.
-	double dotProduct (const vector3 & v) const {
+	long double dotProduct (const vector3 & v) const {
 		return x * v.x + y * v.y + z * v.z;
 	}
 
@@ -116,12 +116,12 @@ public:
 
 
 	//! Возвращает норму вектора - сумму квадратов компонент.
-	double norm() const {
+	long double norm() const {
 		return x*x + y*y + z*z;
 	}
 
 	//! Возвращает длину (тензор) вектора - квадратный корень из суммы квадратов компонент.
-	double length() const {
+	long double length() const {
 		return sqrt (norm());
 	}
 
@@ -131,17 +131,17 @@ public:
 
 
 //! Умножение на константу
-inline vector3 operator* (double num, const vector3 & v) {
+inline vector3 operator* (long double num, const vector3 & v) {
 	return v * num;
 }
 
 //! Возвращает расстояние между векторами - т.е. модуль их разности.
-inline double distance (const vector3 & a, const vector3 & b) {
+inline long double distance (const vector3 & a, const vector3 & b) {
 	return (a-b).length();
 }
 
 //! Скалярное произведение.
-inline double dotProduct (const vector3 & a, const vector3 & b) {
+inline long double dotProduct (const vector3 & a, const vector3 & b) {
 	return a.dotProduct (b);
 }
 

@@ -66,13 +66,13 @@ private:
 
 
 	//! Возвращает ориентацию в заданный момент времени.
-	virtual plane_angles get_angs_ (double t) {
+	virtual plane_angles get_angs_ (long double t) {
 		return amp_ * sin (freq_ * t + shift_);
 	}
 
 
 	//! Возвращает производную от get_angs_() в заданный момент времени.
-	virtual plane_angles get_angs_diff_ (double t) {
+	virtual plane_angles get_angs_diff_ (long double t) {
 		return amp_ * freq_ * cos (freq_ * t + shift_);
 	}
 

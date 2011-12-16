@@ -26,13 +26,13 @@ public:
 		memset (data_, 0, sizeof data_);
 	}
 
-	matrix33 (double data[3][3]) {
+	matrix33 (long double data[3][3]) {
 		for (int i=0; i<3; ++i)
 			for (int j=0; j<3; ++j)
 				data_[i][j] = data[i][j];
 	}
 
-	matrix33 (double a11, double a12, double a13, double a21, double a22, double a23, double a31, double a32, double a33) {
+	matrix33 (long double a11, long double a12, long double a13, long double a21, long double a22, long double a23, long double a31, long double a32, long double a33) {
 		data_[0][0] = a11;
 		data_[0][1] = a12;
 		data_[0][2] = a13;
@@ -49,7 +49,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение row или column.
 	 */
-	double operator() (int row, int column) const {
+	long double operator() (int row, int column) const {
 		if (row < 0 || row >= 3)
 			throw std::invalid_argument ("Invalid row value.");
 		if (column < 0 || column >= 3)
@@ -61,7 +61,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение row или column.
 	 */
-	double & operator() (int row, int column) {
+	long double & operator() (int row, int column) {
 		if (row < 0 || row >= 3)
 			throw std::invalid_argument ("Invalid row value.");
 		if (column < 0 || column >= 3)
@@ -81,7 +81,7 @@ public:
 	}
 
 	//! Умножение на константу.
-	matrix33 operator* (double num) const {
+	matrix33 operator* (long double num) const {
 		matrix33 result = *this;
 		return result *= num;
 	}
@@ -108,7 +108,7 @@ public:
 	}
 
 	//! Деление на константу.
-	matrix33 operator/ (double num) const {
+	matrix33 operator/ (long double num) const {
 		matrix33 result = *this;
 		return result /= num;
 	}
@@ -134,7 +134,7 @@ public:
 	}
 
 	//! Умножение на константу.
-	matrix33 & operator*= (double num) {
+	matrix33 & operator*= (long double num) {
 		for (int i=0; i<3; ++i)
 			for (int j=0; j<3; ++j)
 				data_[i][j] *= num;
@@ -148,7 +148,7 @@ public:
 	}
 	
 	//! Деление на константу.
-	matrix33 & operator/= (double num) {
+	matrix33 & operator/= (long double num) {
 		for (int i=0; i<3; ++i)
 			for (int j=0; j<3; ++j)
 				data_[i][j] /= num;
@@ -160,7 +160,7 @@ protected:
 
 
 	//! Компоненты матрицы.
-	double data_[3][3];
+	long double data_[3][3];
 
 
 }; // class matrix33
@@ -168,7 +168,7 @@ protected:
 
 
 //! Умножение на константу
-inline matrix33 operator* (double num, const matrix33 & m) {
+inline matrix33 operator* (long double num, const matrix33 & m) {
 	return m * num;
 }
 

@@ -44,7 +44,7 @@ private:
 	 * @param t Время, в которое требуется найти решение.
 	 * @param gamma Вектор, состоящий из единственного элемента - входных данных на текущем временном отрезке.
 	 */
-	virtual quaternion get_local_solution_ (double t, const std::vector<vector3> & gamma) {
+	virtual quaternion get_local_solution_ (long double t, const std::vector<vector3> & gamma) {
 		matrix33 Gamma[4];
 		for (int j=0; j<4; ++j) {
 			const vector3 & g = gamma[j];
@@ -69,7 +69,7 @@ private:
 		phi += delta_phi;
 
 
-		double phi_m = phi.length();
+		long double phi_m = phi.length();
 		return quaternion (
 			cos (phi_m / 2),
 			phi * sin (phi_m / 2) / phi_m

@@ -30,7 +30,7 @@ public:
 			quaternion lambda;
 
 			if (i == 1) {
-				double phi_m = phi.length();
+				long double phi_m = phi.length();
 
 				lambda = quaternion (
 					cos (phi_m / 2),

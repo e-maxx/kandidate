@@ -36,7 +36,7 @@ private:
 	 * @param t Время, в которое требуется найти решение.
 	 * @param gamma Вектор, состоящий из единственного элемента - входных данных на текущем временном отрезке.
 	 */
-	virtual Q get_local_solution_ (double t, const std::vector<I> & gamma) {
+	virtual Q get_local_solution_ (long double t, const std::vector<I> & gamma) {
 		const I & phi = gamma[0];
 		BOOST_AUTO( phi_m, phi.length() );
 

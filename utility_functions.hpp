@@ -8,7 +8,8 @@
 
 
 //! Вычисляет квадрат числа.
-inline double sqr (double x) {
+template <class T>
+inline T sqr (const T & x) {
 	return x * x;
 }
 

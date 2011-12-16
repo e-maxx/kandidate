@@ -64,9 +64,9 @@ public:
 	}
 
 	//! Вычисляет и возвращает точное решение во все требуемые моменты времени.
-	t_output_data_ptr get_exact_solution (double step, double last_time) {
+	t_output_data_ptr get_exact_solution (long double step, long double last_time) {
 		t_output_data_ptr result (new t_output_data);
-		for (double t=0; t<=last_time+EPS; t+=step)
+		for (long double t=0; t<=last_time+EPS; t+=step)
 			result->add (t, this->internal_get_exact_solution_ (t));
 		return result;
 	}
@@ -83,7 +83,7 @@ protected:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual I internal_get_instanteous_ (double t) {
+	virtual I internal_get_instanteous_ (long double t) {
 		throw std::runtime_error ("Not implemented: instanteous input data was not calculated.");
 	}
 
@@ -95,12 +95,12 @@ protected:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual I internal_get_integrated_ (double t1, double t2) {
+	virtual I internal_get_integrated_ (long double t1, long double t2) {
 		throw std::runtime_error ("Not implemented: integrated input data was not calculated.");
 	}
 
 	//! Возвращает точное решение в указанный момент времени.
-	virtual Q internal_get_exact_solution_ (double t) = 0;
+	virtual Q internal_get_exact_solution_ (long double t) = 0;
 
 
 private:
@@ -119,11 +119,11 @@ private:
 			return that->internal_get_exact_solution_ (0);
 		}
 
-		virtual I get_instanteous (double t) {
+		virtual I get_instanteous (long double t) {
 			return that->internal_get_instanteous_ (t);
 		}
 
-		virtual I get_integrated (double t1, double t2) {
+		virtual I get_integrated (long double t1, long double t2) {
 			return that->internal_get_integrated_ (t1, t2);
 		}
 

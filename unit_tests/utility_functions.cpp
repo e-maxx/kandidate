@@ -12,11 +12,11 @@ BOOST_AUTO_TEST_CASE( sqr_test )
 {
 	const double tolerance = 1E-7;
 
-    BOOST_CHECK_CLOSE( sqr(0), 0, tolerance );
-    BOOST_CHECK_CLOSE( sqr(2), 4, tolerance );
-    BOOST_CHECK_CLOSE( sqr(-2), 4, tolerance );
-    BOOST_CHECK_CLOSE( sqr(9), 81, tolerance );
-    BOOST_CHECK_CLOSE( sqr(-9), 81, tolerance );
+    BOOST_CHECK_CLOSE( sqr((long double)0), 0, tolerance );
+    BOOST_CHECK_CLOSE( sqr((long double)2), 4, tolerance );
+    BOOST_CHECK_CLOSE( sqr((long double)-2), 4, tolerance );
+    BOOST_CHECK_CLOSE( sqr((long double)9), 81, tolerance );
+    BOOST_CHECK_CLOSE( sqr((long double)-9), 81, tolerance );
 }
 
 

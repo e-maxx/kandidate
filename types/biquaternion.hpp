@@ -75,12 +75,12 @@ public:
 	}
 
 	//! Умножение на константу.
-	biquaternion operator* (double num) const {
+	biquaternion operator* (long double num) const {
 		return biquaternion (a*num, b*num);
 	}
 
 	//! Деление на константу.
-	biquaternion operator/ (double num) const {
+	biquaternion operator/ (long double num) const {
 		return biquaternion (a/num, b/num);
 	}
 
@@ -102,7 +102,7 @@ public:
 
 
 //! Возвращает расстояние между бикватернионами - максимум из расстояний между частями a и b.
-inline double distance (const biquaternion & p, const biquaternion & q) {
+inline long double distance (const biquaternion & p, const biquaternion & q) {
 	return std::max (distance (p.a, q.a), distance (p.b, q.b));
 }
 

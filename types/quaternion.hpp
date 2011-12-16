@@ -27,7 +27,7 @@ public:
 	
 	/** Компоненты кватерниона. */
 	//@{
-	double w, x, y, z;
+	long double w, x, y, z;
 	//@}
 
 	
@@ -36,17 +36,17 @@ public:
 		: w(0), x(0), y(0), z(0)
 	{ }
 
-	quaternion (double w, double x, double y, double z)
+	quaternion (long double w, long double x, long double y, long double z)
 		: w(w), x(x), y(y), z(z)
 	{ }
 
 	//! Конструктор кватерниона от скалярной и векторной частей.
-	quaternion (double w, const vector3 & v)
+	quaternion (long double w, const vector3 & v)
 		: w(w), x(v.x), y(v.y), z(v.z)
 	{ }
 
 	//! Конструктор кватерниона с нулевой векторной частью.
-	explicit quaternion (double num)
+	explicit quaternion (long double num)
 		: w(num), x(0), y(0), z(0)
 	{ }
 
@@ -60,7 +60,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
 	 */
-	double operator[] (int idx) const {
+	long double operator[] (int idx) const {
 		if (idx == 0)  return w;
 		if (idx == 1)  return x;
 		if (idx == 2)  return y;
@@ -72,7 +72,7 @@ public:
 	 *
 	 * @throws std::invalid_argument В случае, если передано некорректное значение idx.
 	 */
-	double & operator[] (int idx) {
+	long double & operator[] (int idx) {
 		if (idx == 0)  return w;
 		if (idx == 1)  return x;
 		if (idx == 2)  return y;
@@ -82,7 +82,7 @@ public:
 
 
 	//! Скалярная часть кватерниона - член w.
-	double get_scalar() const {
+	long double get_scalar() const {
 		return w;
 	}
 
@@ -92,7 +92,7 @@ public:
 	}
 
 	
-	quaternion operator+ (double num) const {
+	quaternion operator+ (long double num) const {
 		return quaternion (w+num, x, y, z);
 	}
 
@@ -100,7 +100,7 @@ public:
 		return quaternion (w+q.w, x+q.x, y+q.y, z+q.z);
 	}
 
-	quaternion operator- (double num) const {
+	quaternion operator- (long double num) const {
 		return quaternion (w-num, x, y, z);
 	}
 
@@ -109,12 +109,12 @@ public:
 	}
 
 	//! Умножение на константу.
-	quaternion operator* (double num) const {
+	quaternion operator* (long double num) const {
 		return quaternion (w*num, x*num, y*num, z*num);
 	}
 
 	//! Деление на константу.
-	quaternion operator/ (double num) const {
+	quaternion operator/ (long double num) const {
 		return quaternion (w/num, x/num, y/num, z/num);
 	}
 
@@ -143,12 +143,12 @@ public:
 		return *this;
 	}
 
-	quaternion & operator*= (double num) {
+	quaternion & operator*= (long double num) {
 		*this = *this * num;
 		return *this;
 	}
 
-	quaternion & operator/= (double num) {
+	quaternion & operator/= (long double num) {
 		*this = *this / num;
 		return *this;
 	}
@@ -171,12 +171,12 @@ public:
 
 
 	//! Возвращает норму кватерниона - сумму квадратов компонент.
-	double norm() const {
+	long double norm() const {
 		return w*w + x*x + y*y + z*z;
 	}
 
 	//! Возвращает длину (тензор) кватерниона - квадратный корень из суммы квадратов компонент.
-	double length() const {
+	long double length() const {
 		return sqrt (norm());
 	}
 
@@ -191,22 +191,22 @@ public:
 
 
 
-inline quaternion operator+ (double a, const quaternion & b) {
+inline quaternion operator+ (long double a, const quaternion & b) {
 	return b + a;
 }
 
-inline quaternion operator- (double a, const quaternion & b) {
+inline quaternion operator- (long double a, const quaternion & b) {
 	return quaternion (a-b.w, -b.x, -b.y, -b.z);
 }
 
-inline quaternion operator* (double a, const quaternion & b) {
+inline quaternion operator* (long double a, const quaternion & b) {
 	return b * a;
 }
 
 
 
 //! Возвращает расстояние между кватернионами - т.е. модуль их разности.
-inline double distance (const quaternion & a, const quaternion & b) {
+inline long double distance (const quaternion & a, const quaternion & b) {
 	return (a-b).length();
 }
 

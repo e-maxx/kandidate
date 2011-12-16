@@ -52,7 +52,7 @@ protected:
 	 * Классы-потомки должны реализовывать этот метод, задавая тем самым
 	 * конкретный вид колебаний.
 	 */
-	virtual plane_angles get_angs_ (double t) = 0;
+	virtual plane_angles get_angs_ (long double t) = 0;
 
 
 	/** Возвращает производную от get_angs_() в заданный момент времени.
@@ -60,25 +60,25 @@ protected:
 	 * Классы-потомки должны реализовывать этот метод, задавая тем самым
 	 * конкретный вид колебаний.
 	 */
-	virtual plane_angles get_angs_diff_ (double t) = 0;
+	virtual plane_angles get_angs_diff_ (long double t) = 0;
 
 
 private:
 
 
 	//! Возвращает мгновенные входные данные в данный момент времени.
-	virtual vector3 internal_get_instanteous_ (double t) {
+	virtual vector3 internal_get_instanteous_ (long double t) {
 		return calc_omega_ (this->get_angs_ (t), this->get_angs_diff_ (t));
 	}
 
 	//! Возвращает интегральные входные данные за указанный промежуток времени.
-	virtual vector3 internal_get_integrated_ (double t1, double t2) {
+	virtual vector3 internal_get_integrated_ (long double t1, long double t2) {
 		BOOST_AUTO( func, boost::bind (&artifical_input_plane_angles::internal_get_instanteous_, this, _1) );
 		return default_integrator<vector3>()->integrate (func, t1, t2);
 	}
 
 	//! Возвращает точное решение в указанный момент времени.
-	virtual quaternion internal_get_exact_solution_ (double t) {
+	virtual quaternion internal_get_exact_solution_ (long double t) {
 		return (quaternion) get_angs_ (t);
 	}
 

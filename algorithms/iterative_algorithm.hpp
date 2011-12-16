@@ -70,7 +70,7 @@ protected:
 	 * @param t Время, в которое требуется найти решение.
 	 * @param gamma Входные данные на временном отрезке (это вектор, поскольку для многошаговых алгоритмов (см. get_algorithm_steps_count_()) передаётся соответствующее число входных данных: на нескольких подотрезках, в порядке их следования во времени).
 	 */
-	virtual Q get_local_solution_ (double t, const std::vector<I> & gamma) = 0;
+	virtual Q get_local_solution_ (long double t, const std::vector<I> & gamma) = 0;
 
 
 private:
@@ -89,14 +89,14 @@ private:
 		int steps_count = this->get_algorithm_steps_count_();
 		std::vector<I> gamma (steps_count);
 
-		double step = this->step_;
-		double delta_t = step / steps_count;
+		long double step = this->step_;
+		long double delta_t = step / steps_count;
 
 		for (size_t i=1; i<result->get_count(); ++i) {
 			// вычисляем входные данные
-			double t = result->ts[i];
+			long double t = result->ts[i];
 			for (int j=0; j<steps_count; ++j) {
-				double t1 = t - step + j * delta_t,
+				long double t1 = t - step + j * delta_t,
 					t2 = t1 + delta_t;
 				gamma[j] = this->input_data_->get_integrated (t1, t2);
 			}

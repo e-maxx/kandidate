@@ -51,7 +51,7 @@ public:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual I get_instanteous (double t) {
+	virtual I get_instanteous (long double t) {
 		throw std::runtime_error ("Not implemented: instanteous input data was not calculated.");
 	}
 
@@ -63,7 +63,7 @@ public:
 	 *
 	 * @throws std::runtime_exception Всегда кидает это исключение, если вызов дошёл до данной реализации.
 	 */
-	virtual I get_integrated (double t1, double t2) {
+	virtual I get_integrated (long double t1, long double t2) {
 		throw std::runtime_error ("Not implemented: integrated input data was not calculated.");
 	}
 

@@ -80,9 +80,9 @@ public:
 		//! Точное решение.
 		t_output_data_ptr exact_solution;
 		//! Массив погрешностей - погрешность подсчитана для каждого момента времени.
-		std::vector<double> differences;
+		std::vector<long double> differences;
 		//! Наибольшая погрешность.
-		double max_difference;
+		long double max_difference;
 
 
 	private:

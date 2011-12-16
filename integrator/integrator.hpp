@@ -34,7 +34,7 @@ public:
 	 * @param x0 Левая граница интегрирования (откуда начинаем интегрировать).
 	 * @param x1 Правая граница интегрирования (до которой интегрируем).
 	 */
-	virtual T integrate (boost::function < T(double) > f, double x0, double x1) = 0;
+	virtual T integrate (boost::function < T(long double) > f, long double x0, long double x1) = 0;
 
 };
 
@@ -44,7 +44,7 @@ public:
 
 
 //! Погрешность метода Симпсона по умолчанию.
-static double default_integrator_step = 1E-4;
+static long double default_integrator_step = 1E-5;
 
 
 //! Возвращает текущий выбранный алгоритм интегрирования (если никакой не выбран, то возвращает метод Симпсона).

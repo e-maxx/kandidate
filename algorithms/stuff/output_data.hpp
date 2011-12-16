@@ -30,7 +30,7 @@ public:
 	 *
 	 * Времена указаны в порядке возврастания.
 	 */
-	std::vector<double> ts;
+	std::vector<long double> ts;
 	//! Список решений - по одному объекту класса Q для каждого момента времени.
 	std::vector<Q> qs;
 
@@ -39,7 +39,7 @@ public:
 	 *
 	 * Предполагается, что этот метод вызывается в порядке увеличения времён.
 	 */
-	void add (double t, const Q & q) {
+	void add (long double t, const Q & q) {
 		ts.push_back (t);
 		qs.push_back (q);
 	}
@@ -50,7 +50,7 @@ public:
 	}
 
 	//! Метод для удобного доступа к списку времён.
-	double get_time (int idx) const {
+	long double get_time (int idx) const {
 		return ts[idx];
 	}
 
