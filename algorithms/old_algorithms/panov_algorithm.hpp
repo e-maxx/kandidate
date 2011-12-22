@@ -56,31 +56,6 @@ private:
 		}
 
 		
-		const int SZ = 13;
-		vector3 arr[SZ];
-		for (int i=0; i<4; ++i)
-			arr[i] = gamma[i];
-		arr[4] = 64.0/45  * dotProduct (gamma[1], gamma[2]) * (Gamma[1] * gamma[2]);
-		arr[5] = 32.0/45  * (Gamma[0]*Gamma[1]*gamma[3]);
-		arr[6] = -32.0/45 * (Gamma[3]*Gamma[0]*gamma[2]);
-		arr[7] = 22.0/45  * (Gamma[0] * gamma[2]);
-		arr[8] = 22.0/45  * (Gamma[0] * gamma[3]);
-		arr[9] = 22.0/45  * (Gamma[1] * gamma[2]);
-		arr[10] = 22.0/45  * (Gamma[1] * gamma[3]);
-		arr[11] = 32.0/45  * (Gamma[0] * gamma[1]);
-		arr[12] = 32.0/45  * (Gamma[2] * gamma[3]);
-
-		vector3 phi;
-		for (int i=0; i<3; ++i) {
-			double tmp[SZ];
-			for (int j=0; j<SZ; ++j)
-				tmp[j] = arr[j][i];
-			std::sort (tmp, tmp+SZ);
-			
-			for (int j=0; j<SZ; ++j)
-				phi[i] += tmp[j];
-		}
-/*
 		vector3 phi =
 			22.0/45 * (Gamma[0] + Gamma[1]) * (gamma[2] + gamma[3]) +
 			32.0/45 * (Gamma[0] * gamma[1] + Gamma[2] * gamma[3]);
@@ -93,7 +68,6 @@ private:
 		for (int j=0; j<4; ++j)
 			phi += gamma[j];
 		phi += delta_phi;
-*/
 
 		long double phi_m = phi.length();
 		return quaternion (
